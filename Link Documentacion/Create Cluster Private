@@ -52,6 +52,15 @@ A continuación, creará una red virtual que contenga dos subredes vacías.
 Establezca las siguientes variables.
 Consola
 
+Consola Linux Set variables
+
+vi setvars.sh
+export LOCATION=eastus                 # the location of your cluster
+export RESOURCEGROUP="arogbb$LOCATION"    # the name of the resource group where you want to create your cluster
+export CLUSTER=aro-cluster             # the name of your cluster
+
+source vars.sh
+
 Copiar
 LOCATION=eastus                 # the location of your cluster
 RESOURCEGROUP="v4-$LOCATION"    # the name of the resource group where you want to create your cluster
@@ -228,3 +237,69 @@ Conectarse al clúster mediante el usuario kubeadmin.
 Pase al siguiente artículo, donde aprenderá a configurar el clúster para la autenticación mediante Azure Active Directory.
 Configuración la autenticación con Azure Active Directory desde la línea de comandos
 Configuración la autenticación con Azure Active Directory desde Azure Portal y la consola web de OpenShift
+
+Configuracion adicional de AD scripts
+
+Conectar a active directory
+
+Descargar Cliente OC 
+
+https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/
+
+
+https://github.com/stuartatmicrosoft/azure-aro.git
+
+git clone https://github.com/stuartatmicrosoft/azure-aro.git 
+
+Cliente OpenShift 
+
+cd ~
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gzmkdir openshift
+
+tar -zxvf openshift-client-linux.tar.gz -C openshift
+
+echo 'export PATH=$PATH:~/openshift' >> ~/.bashrc && source ~/.bashrc
+```
+Libreria JQ necesaria.
+
+wget https://rpmfind.net/linux/epel/7/x86_64/Packages/j/jq-1.6-2.el7.x86_64.rpm
+
+sudo rpm -ivh jq-1.6-2.el7.x86_64.rpm
+
+
+https://docs.microsoft.com/en-us/azure/openshift/configure-azure-ad-ui#assign-users-and-groups-to-the-cluster-optional
+
+https://docs.microsoft.com/es-es/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users#app-registration
+
+
+Corregir ADD CONECT ARO 
+
+https://oauth-openshift.apps.2g3vj1yx/oauth2callback/AAD"VALOR USADO POR EL NOMBRE ID EN OPENSHIFT
+
+https://console-openshift-console.apps.cdarodesqa.davivienda.com/
+
+https://oauth-openshift.apps.cdarodesqa.davivienda.com/oauth2callback/AAD
+
+Enable roles
+
+Get Token console example
+
+COMO kubeadmin and enable accesos nombre de cuentas en User Management Seccion
+
+example
+NAME                                            FULLNAME                                        Identities 
+beta1@arogbblatam.onmicrosoft.com               beta1                                           AROACDJARO:GC8c9sEp-IHhO-mct9weNZDoBuuPy8ez8eQHEgo-69Q	
+zrRmrvejSKfeaNyiUPB7LKK8m1gim05zbZHhnUOn9jY     rooliva@microsoft.com Oliva (ROGER GBB OSS)	    AROACDJARO:zrRmrvejSKfeaNyiUPB7LKK8m1gim05zbZHhnUOn9jY
+	
+
+
+oc login --token=O9L_-Lihppn-QEHVzeVdM5hIEwqSTuKL6QY_ByDQ30A --server=https://api.arogbbltam.eastus2.cloudapp.azure.com:6443
+
+oc adm policy add-cluster-role-to-user cluster-admin  beta1@arogbblatam.onmicrosoft.com
+oc adm policy add-cluster-role-to-user cluster-admin  zrRmrvejSKfeaNyiUPB7LKK8m1gim05zbZHhnUOn9jY
+
+oc project worddpress
+oc adm policy add-scc-to-user anyuid -z default
+oc adm policy add-cluster-role-to-user cluster-admin
+
+oc process openshift//mongodb-persistent -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -

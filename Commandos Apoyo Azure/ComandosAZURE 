@@ -3,3 +3,22 @@ az account list |grep name
 Como saber zonas activadas para el servicio
 
 az provider show -n Microsoft.RedHatOpenShift --query "resourceTypes[?resourceType == 'OpenShiftClusters']".locations --output json
+az aro list -o table
+
+
+oc login --token=ZE-zeYaOXjVKEY0e5PUD2c-ls_zs9EYQOTtNVYVFKwU --server=https://api.arogbbltam.eastus2.cloudapp.azure.com:6443
+oc get projects
+oc new-project workshop
+oc project workshop
+oc get templates -n openshift |grep mongo
+oc new-app https://github.com/Jaronets/rating-web.git --strategy=source
+oc get svc rating-api
+oc describe bc/rating-api
+oc get bc/rating-api -o=jsonpath='{.spec.triggers..github.secret}'
+
+oc set env deploy rating-web API=http://rating-api:8080
+
+oc get route rating-web
+
+oc get crd
+oc get crd|grep machine
