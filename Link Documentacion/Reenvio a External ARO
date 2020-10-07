@@ -1,0 +1,19 @@
+Para configurar el reenvío de DNS en un clúster de Red Hat OpenShift en Azure, deberá modificar el operador de DNS. Esta modificación permitirá que los pods de aplicación que se ejecutan dentro del clúster resuelvan los nombres hospedados en un servidor DNS privado fuera de dicho clúster. Estos pasos se documentaron para OpenShift 4.3 en este vínculo.
+Por ejemplo, si quiere reenviar todas las solicitudes DNS para que un servidor DNS 192.168.100.10 resuelva a *.example.com, puede editar la configuración del operador al ejecutar el siguiente comando:
+Bash
+
+Copiar
+oc edit dns.operator/default
+Se iniciará un editor y podrá reemplazar spec: {} por:
+YAML
+
+Copiar
+spec:
+ servers:
+ - forwardPlugin:
+     upstreams:
+     - 192.168.100.10
+   name: example-dns
+   zones:
+   - example.com
+Guarde el archivo y salga de su editor.
