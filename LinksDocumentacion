@@ -15,5 +15,7 @@ Configuración de la autenticación de Azure Active Directory para un clúster d
 
 https://docs.microsoft.com/es-es/azure/openshift/configure-azure-ad-cli
 
+Configuración del reenvío de DNS en un clúster de Red Hat OpenShift en Azure 4
 
+https://docs.microsoft.com/es-es/azure/openshift/dns-forwarding
 
