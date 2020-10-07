@@ -1,8 +1,6 @@
 https://docs.microsoft.com/es-es/azure/openshift/howto-create-private-cluster-4x
 
 Creación de un clúster privado de la versión 4 de Red Hat OpenShift en Azure
-12/03/2020
-Tiempo de lectura: 5 minutos
   
 En este artículo, preparará su entorno para crear clústeres privados de Red Hat OpenShift en Azure que ejecutan OpenShift 4. Aprenderá a:
 Configurar los requisitos previos y crear la red virtual y las subredes necesarias.
