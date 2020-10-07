@@ -7,3 +7,21 @@ Versión de OCP	Versión anterior	Disponibilidad general de Red Hat OpenShift en
 4.4.	Mayo de 2020	Agosto de 2020	4.6 Disponibilidad general
 4,5	Julio de 2020	Octubre de 2020	4.7 GA
 4,6	*A principios del cuarto trimestre de 2020	*A finales del cuarto trimestre de 2020	4.8 GA
+
+Life Cycle Date Of REDHAT LINK
+
+https://access.redhat.com/support/policy/updates/openshift/#dates
+
+Version	General availability	Full support ends	Maintenance support ends
+Full support OpenShift Container Platform 4
+Version	General availability	Full support ends	Maintenance support ends
+4.5	July 13, 2020	Release of 4.6 + 1 month	Release of 4.8
+Maintenance support OpenShift Container Platform 4
+Version	General availability	Full support ends	Maintenance support ends
+4.4	5 de mayo de 2020	August 13, 2020	Release of 4.7
+4.3	23 de enero de 2020	5 de junio de 2020	Release of 4.6
+End of life OpenShift Container Platform 4
+Version	General availability	Full support ends	Maintenance support ends
+4.2	16 de octubre de 2019	23 de febrero de 2020	July 13, 2020
+4.1	4 de junio de 2019	16 de noviembre de 2019	5 de mayo de 2020
+
