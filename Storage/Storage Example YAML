@@ -1,0 +1,57 @@
+
+
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pvc-5dee111d-b4e9-430f-8984-c8fed0be4a44
+  selfLink: /api/v1/persistentvolumes/pvc-5dee111d-b4e9-430f-8984-c8fed0be4a44
+  uid: 9b69764b-0a6e-4f2f-9c92-1bd5a4aafc97
+  resourceVersion: '7157514'
+  creationTimestamp: '2020-08-06T14:22:27Z'
+  labels:
+    failure-domain.beta.kubernetes.io/region: westus2
+    failure-domain.beta.kubernetes.io/zone: westus2-2
+  annotations:
+    pv.kubernetes.io/bound-by-controller: 'yes'
+    pv.kubernetes.io/provisioned-by: kubernetes.io/azure-disk
+    volumehelper.VolumeDynamicallyCreatedByKey: azure-disk-dynamic-provisioner
+  finalizers:
+    - kubernetes.io/pv-protection
+spec:
+  capacity:
+    storage: 1Gi
+  azureDisk:
+    diskName: playground-x8zxj-dynamic-pvc-5dee111d-b4e9-430f-8984-c8fed0be4a44
+    diskURI: >-
+      /subscriptions/a9568abc-ff41-4d18-8dd7-e7e6befba490/resourceGroups/aro-yq1h7kpq/providers/Microsoft.Compute/disks/playground-x8zxj-dynamic-pvc-5dee111d-b4e9-430f-8984-c8fed0be4a44
+    cachingMode: ReadOnly
+    fsType: ''
+    readOnly: false
+    kind: Managed
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: dsh-ostoy
+    name: ostoy-pvc
+    uid: 5dee111d-b4e9-430f-8984-c8fed0be4a44
+    apiVersion: v1
+    resourceVersion: '7157453'
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: managed-premium
+  volumeMode: Filesystem
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: failure-domain.beta.kubernetes.io/region
+              operator: In
+              values:
+                - westus2
+            - key: failure-domain.beta.kubernetes.io/zone
+              operator: In
+              values:
+                - westus2-2
+status:
+  phase: Bound

@@ -21,3 +21,11 @@ https://docs.microsoft.com/es-es/azure/openshift/dns-forwarding
 
 Videos de documentacion importantes.
 https://www.openshift.com/blog/openshift-4-x-installation-a-quick-overview
+
+
+ARO CORP PARA TEST
+
+https://oauth-openshift.apps.yq1h7kpq.westus2.aroapp.io/oauth/authorize?client_id=console&redirect_uri=https%3A%2F%2Fconsole-openshift-console.apps.yq1h7kpq.westus2.aroapp.io%2Fauth%2Fcallback&response_type=code&scope=user%3Afull&state=7d9aff85
+
+Soporte Alcnaces
+https://docs.microsoft.com/es-es/azure/openshift/support-policies-v4
