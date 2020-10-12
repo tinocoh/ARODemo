@@ -1,0 +1,7 @@
+CLUSTER=yourclustername
+RESOURCE_GROUP=yourresourcegroup
+
+
+az aro delete --resource-group $RESOURCE_GROUP --name $CLUSTER
+
+az aro delete --resource-group JAROPRIVATE --name arogbbltam
