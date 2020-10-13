@@ -3,6 +3,9 @@ az account list |grep name
 Como saber zonas activadas para el servicio
 
 az provider show -n Microsoft.RedHatOpenShift --query "resourceTypes[?resourceType == 'OpenShiftClusters']".locations --output json
+
+Lista los ARO en cluster de una Suscription.
+
 az aro list -o table
 
 

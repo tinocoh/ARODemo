@@ -1,0 +1,47 @@
+
+az network vnet subnet create --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --name master-subnet --address-prefixes 10.0.3.0/24 --service-endpoints Microsoft.ContainerRegistry
+az network vnet subnet create --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --name worker-subnet --address-prefixes 10.0.4.0/24 --service-endpoints Microsoft.ContainerRegistry
+az network vnet subnet update --name master-subnet --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --disable-private-link-service-network-policies true
+az aro create --resource-group JAROPRIVATE --name arogbbltam --vnet JAROPRIVATE-vnet --master-subnet master-subnet --worker-subnet worker-subnet --worker-count 3 --pull-secret @pullsecret.txt --location eastus2 --apiserver-visibility public --ingress-visibility Public --domain arogbbltam.eastus2.cloudapp.azure.com
+az aro list-credentials --name arogbbltam --resource-group JAROPRIVATE
+{
+  "kubeadminPassword": "rGyoI-dFPw4-o2CkL-wMJJ3",
+  "kubeadminUsername": "kubeadmin"
+}
+
+az aro show --name arogbbltam --resource-group JAROPRIVATE --query "consoleProfile.url" -o tsv
+
+https://console-openshift-console.apps.arogbbltam.eastus2.cloudapp.azure.com/
+https://oauth-openshift.apps.arogbbltam.eastus2.cloudapp.azure.com
+
+
+
+
+az aro show -g JAROPRIVATE -n arogbbltam --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n arogbbltam --query location -o tsv
+az aro show -g JAROPRIVATE -n arogbbltam --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n arogbbltam --query consoleProfile.url -o tsv
+oauthCallbackURL=https://oauth-openshift.apps.$domain.$location.aroapp.io/oauth2callback/AAD
+
+
+domain=$(az aro show -g JAROPRIVATE -n arogbbltam --query clusterProfile.domain -o tsv)
+location=$(az aro show -g JAROPRIVATE -n arogbbltam --query location -o tsv)
+apiServer=$(az aro show -g JAROPRIVATE -n arogbbltam --query apiserverProfile.url -o tsv)
+webConsole=$(az aro show -g JAROPRIVATE -n arogbbltam --query consoleProfile.url -o tsv)
+oauthCallbackURL=https://oauth-openshift.apps.$domain.$location.aroapp.io/oauth2callback/AAD
+https://oauth-openshift.apps.arogbbltam.eastus2.cloudapp.azure.com.eastus2.aroapp.io/oauth2callback/AAD
+https://oauth-openshift.apps.arogbbltam.eastus2.cloudapp.azure.com/oauth2callback/AAD
+
+
+
+Display name: aro-azure-auth
+Application (client) ID: 0a81bee7-7499-40f9-a28b-016bc318fc54
+Directory (tenant) ID:7e0038ff-3fa6-41cc-9135-6bc134d9e78a
+
+Clave de Secret openid aro-azure-auth
+Client secrets
+
+Description openid
+Expires 12/31/2299
+Value FyPZ3-JgZ_RoqJS.LVHc6P15gIy-44z7_5
+
