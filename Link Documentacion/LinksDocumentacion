@@ -31,6 +31,7 @@ Soporte Alcnaces
 https://docs.microsoft.com/es-es/azure/openshift/support-policies-v4
 
 Link FAQ
+<<<<<<< HEAD
 https://docs.microsoft.com/en-us/azure/openshift/openshift-faq
 
 Link de conection de ACR to ARO
@@ -42,3 +43,6 @@ https://docs.microsoft.com/es-es/azure/openshift/howto-add-update-pull-secret
 
 Creacion de Docker
 https://docs.docker.com/engine/reference/commandline/build/
+=======
+https://docs.microsoft.com/en-us/azure/openshift/openshift-faq
+>>>>>>> 8381c3bff11363733354acaf034ea8cc775d0ac9
