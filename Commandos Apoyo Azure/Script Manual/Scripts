@@ -47,16 +47,143 @@ Value FyPZ3-JgZ_RoqJS.LVHc6P15gIy-44z7_5
 
 DEPLOY TEST
 
+
 oc new-project workshop
+
+OPCION ARO4.5
+oc get templates -n openshift
 oc process openshift//mongodb-persistent -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -
+
+OPCION ARO4.7
+oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/mongodb-ephemeral-template.json
+oc get templates 
+oc process mongodb-ephemeral -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -
+
 oc status
 oc get svc mongodb
 oc new-app https://github.com/microsoft/rating-api --strategy=source
 oc get svc rating-api
 oc set env deploy rating-api MONGODB_URI=mongodb://ratingsuser:ratingspassword@mongodb.workshop.svc.cluster.local:27017/ratingsdb
 oc get pods
-oc logs -p rating-api-2-x5pps rating-api
+
+CHECK CONTROL LOGS
+## oc logs -p rating-api-2-x5pps rating-api
+
 oc new-app https://github.com/microsoft/rating-web --strategy=source
 oc set env deploy rating-web API=http://rating-api:8080
 oc expose svc/rating-web
 oc get route rating-web
+
+
+
+
+az aro create --resource-group JAROPRIVATE --name arogbblatam --vnet JAROPRIVATE-vnet --master-subnet master-subnet --worker-subnet worker-subnet --worker-count 3 --pull-secret @pullsecret.txt --location eastus2 --apiserver-visibility Private --ingress-visibility Private --domain jaroprivatecloud.net
+{- Finished ..
+  "apiserverProfile": {
+    "ip": "10.0.3.4",
+    "url": "https://api.jaroprivatecloud.net:6443/",
+    "visibility": "Private"
+  },
+  "clusterProfile": {
+    "domain": "jaroprivatecloud.net",
+    "pullSecret": null,
+    "resourceGroupId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourcegroups/aro-3xnvbhhm",
+    "version": "4.6.17"
+  },
+  "consoleProfile": {
+    "url": "https://console-openshift-console.apps.jaroprivatecloud.net/"
+  },
+  "id": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/JAROPRIVATE/providers/Microsoft.RedHatOpenShift/openShiftClusters/arogbblatam",
+  "ingressProfiles": [
+    {
+      "ip": "10.0.4.254",
+      "name": "default",
+      "visibility": "Private"
+    }
+  ],
+  "location": "eastus2",
+  "masterProfile": {
+    "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/JAROPRIVATE/providers/Microsoft.Network/virtualNetworks/JAROPRIVATE-vnet/subnets/master-subnet",
+    "vmSize": "Standard_D8s_v3"
+  },
+  "name": "arogbblatam",
+  "networkProfile": {
+    "podCidr": "10.128.0.0/14",
+    "serviceCidr": "172.30.0.0/16"
+  },
+  "provisioningState": "Succeeded",
+  "resourceGroup": "JAROPRIVATE",
+  "servicePrincipalProfile": {
+    "clientId": "85e9e747-a758-4093-9df9-61766501bac9",
+    "clientSecret": null
+  },
+  "tags": null,
+  "type": "Microsoft.RedHatOpenShift/openShiftClusters",
+  "workerProfiles": [
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "arogbblatam-kp484-worker-eastus21",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/JAROPRIVATE/providers/Microsoft.Network/virtualNetworks/JAROPRIVATE-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    },
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "arogbblatam-kp484-worker-eastus22",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/JAROPRIVATE/providers/Microsoft.Network/virtualNetworks/JAROPRIVATE-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    },
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "arogbblatam-kp484-worker-eastus23",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/JAROPRIVATE/providers/Microsoft.Network/virtualNetworks/JAROPRIVATE-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    }
+  ]
+}
+
+az aro create --resource-group JAROPRIVATE --name davivienda --vnet JAROPRIVATE-vnet --master-subnet masterpub --worker-subnet workerpub --worker-count 3 --pull-secret @pullsecret.txt --location eastus2 --apiserver-visibility public --ingress-visibility Public --domain cdarolab.davivienda.com
+
+
+az aro show -g JAROPRIVATE -n arolabdav --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n arolabdav --query location -o tsv
+az aro show -g JAROPRIVATE -n arolabdav --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n arolabdav --query consoleProfile.url -o tsv
+az aro list-credentials --name arolabdav --resource-group JAROPRIVATE
+
+az aro show -g JAROPRIVATE -n arogbblatam --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query location -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query consoleProfile.url -o tsv
+az aro list-credentials --name arogbblatam --resource-group JAROPRIVATE
+
+
+az aro show -g JAROPRIVATE -n davivienda --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n davivienda --query location -o tsv
+az aro show -g JAROPRIVATE -n davivienda --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n davivienda --query consoleProfile.url -o tsv
+az aro list-credentials --name davivienda --resource-group JAROPRIVATE
+
+oc create configmap custom-ca --from-file=ca-bundle.crt=davivienda2021.crt  -n openshift-config
+oc patch proxy/cluster --type=merge  --patch='{"spec":{"trustedCA":{"name":"custom-ca"}}}'
+oc create secret tls daviviendacrt --cert=davivienda2021.crt --key=davivienda2021.key  -n openshift-ingress
+oc patch ingresscontroller.operator default --type=merge -p '{"spec":{"defaultCertificate": {"name": "daviviendacrt"}}}' -n openshift-ingress-operator
+
+
+
+
+oc replace --force --wait --filename - <<EOF                                 
+apiVersion: operator.openshift.io/v1                            
+kind: IngressController
+metadata:
+  namespace: openshift-ingress-operator
+  name: default
+spec:
+  endpointPublishingStrategy:
+    type: LoadBalancerService
+    loadBalancer:
+      scope: External
+EOF
+bck-i-search: EOF_
