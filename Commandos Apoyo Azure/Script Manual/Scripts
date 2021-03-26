@@ -187,3 +187,14 @@ spec:
       scope: External
 EOF
 bck-i-search: EOF_
+
+
+
+
+
+
+az aro show -g JAROPRIVATE -n aroclusterlatams --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n aroclusterlatams --query location -o tsv
+az aro show -g JAROPRIVATE -n aroclusterlatams --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n aroclusterlatams --query consoleProfile.url -o tsv
+az aro list-credentials --name aroclusterlatams --resource-group JAROPRIVATE
