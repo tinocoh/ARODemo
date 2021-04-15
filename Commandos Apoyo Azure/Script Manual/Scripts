@@ -172,6 +172,9 @@ oc create secret tls daviviendacrt --cert=davivienda2021.crt --key=davivienda202
 oc patch ingresscontroller.operator default --type=merge -p '{"spec":{"defaultCertificate": {"name": "daviviendacrt"}}}' -n openshift-ingress-operator
 
 
+oc get co 
+
+status
 
 
 oc replace --force --wait --filename - <<EOF                                 
