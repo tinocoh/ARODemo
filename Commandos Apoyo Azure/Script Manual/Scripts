@@ -2,8 +2,13 @@
 az network vnet subnet create --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --name master-subnet --address-prefixes 10.0.3.0/24 --service-endpoints Microsoft.ContainerRegistry
 az network vnet subnet create --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --name worker-subnet --address-prefixes 10.0.4.0/24 --service-endpoints Microsoft.ContainerRegistry
 az network vnet subnet update --name master-subnet --resource-group JAROPRIVATE --vnet-name JAROPRIVATE-vnet --disable-private-link-service-network-policies true
-az aro create --resource-group JAROPRIVATE --name arogbbltam --vnet JAROPRIVATE-vnet --master-subnet master-subnet --worker-subnet worker-subnet --worker-count 3 --pull-secret @pullsecret.txt --location eastus2 --apiserver-visibility public --ingress-visibility Public --domain arogbbltam.eastus2.cloudapp.azure.com
-az aro list-credentials --name arogbbltam --resource-group JAROPRIVATE
+az aro create --resource-group JAROPRIVATE --name arogbblatam --vnet JAROPRIVATE-vnet --master-subnet master-subnet --worker-subnet worker-subnet --worker-count 3 --pull-secret @pullsecret.txt --location eastus2 --apiserver-visibility public --ingress-visibility Public --domain arogbbltam.eastus2.cloudapp.azure.com
+az aro show -g JAROPRIVATE -n arogbblatam --query clusterProfile.domain -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query location -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query apiserverProfile.url -o tsv
+az aro show -g JAROPRIVATE -n arogbblatam --query consoleProfile.url -o tsv
+az aro list-credentials --name arogbblatam --resource-group JAROPRIVATE
+
 {
   "kubeadminPassword": "rGyoI-dFPw4-o2CkL-wMJJ3",
   "kubeadminUsername": "kubeadmin"
@@ -17,11 +22,7 @@ https://oauth-openshift.apps.arogbbltam.eastus2.cloudapp.azure.com
 
 
 
-az aro show -g JAROPRIVATE -n arogbbltam --query clusterProfile.domain -o tsv
-az aro show -g JAROPRIVATE -n arogbbltam --query location -o tsv
-az aro show -g JAROPRIVATE -n arogbbltam --query apiserverProfile.url -o tsv
-az aro show -g JAROPRIVATE -n arogbbltam --query consoleProfile.url -o tsv
-oauthCallbackURL=https://oauth-openshift.apps.$domain.$location.aroapp.io/oauth2callback/AAD
+oauthCallbackURL=https://oauth-openshift.apps.$domain.$location.aroapp.io/oauth1callback/AAD
 
 
 domain=$(az aro show -g JAROPRIVATE -n arogbbltam --query clusterProfile.domain -o tsv)
