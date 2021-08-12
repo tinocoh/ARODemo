@@ -303,3 +303,17 @@ oc adm policy add-scc-to-user anyuid -z default
 oc adm policy add-cluster-role-to-user cluster-admin
 
 oc process openshift//mongodb-persistent -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -
+
+Raúl Guerrero15:26
+echo "*****************************************************************"
+echo ""
+echo "Enter with your Azure Ad User and run"
+echo "oc get users"
+echo "oc adm policy add-cluster-role-to-user cluster-admin <user_name>"
+echo "oc adm policy add-scc-to-user anyuid -z default"
+echo ""
+echo "*****************************************************************"
+oc get users
+Raúl Guerrero15:39
+oc adm policy add-cluster-role-to-user cluster-admin 
+oc adm policy add-cluster-role-to-user cluster-admin 
