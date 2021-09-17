@@ -9,6 +9,11 @@ az aro list-credentials --name arogbbltam --resource-group JAROPRIVATE
   "kubeadminUsername": "kubeadmin"
 }
 
+
+az account list-locations
+az vm list-sizes -l southcentralus
+
+
 az aro show --name arogbbltam --resource-group JAROPRIVATE --query "consoleProfile.url" -o tsv
 
 https://console-openshift-console.apps.arogbbltam.eastus2.cloudapp.azure.com/

@@ -1,0 +1,67 @@
+rooliva@MacBookProJARO ARO4 % ./creacion.sh 
+{- Finished ..
+  "apiserverProfile": {
+    "ip": "20.88.202.122",
+    "url": "https://api.foo.example.com:6443/",
+    "visibility": "Public"
+  },
+  "clusterProfile": {
+    "domain": "foo.example.com",
+    "pullSecret": null,
+    "resourceGroupId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourcegroups/aro-hsc6h2zd",
+    "version": "4.7.21"
+  },
+  "consoleProfile": {
+    "url": "https://console-openshift-console.apps.foo.example.com/"
+  },
+  "id": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/arogbbsouthcentralus/providers/Microsoft.RedHatOpenShift/openShiftClusters/aroclustersouthcentralus",
+  "ingressProfiles": [
+    {
+      "ip": "20.88.202.113",
+      "name": "default",
+      "visibility": "Public"
+    }
+  ],
+  "location": "southcentralus",
+  "masterProfile": {
+    "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/arogbbsouthcentralus/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/master-subnet",
+    "vmSize": "Standard_D8s_v3"
+  },
+  "name": "aroclustersouthcentralus",
+  "networkProfile": {
+    "podCidr": "10.128.0.0/14",
+    "serviceCidr": "172.30.0.0/16"
+  },
+  "provisioningState": "Succeeded",
+  "resourceGroup": "arogbbsouthcentralus",
+  "servicePrincipalProfile": {
+    "clientId": "07a0d374-f440-4124-86d0-0fd992faa5db",
+    "clientSecret": null
+  },
+  "tags": null,
+  "type": "Microsoft.RedHatOpenShift/openShiftClusters",
+  "workerProfiles": [
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "aroclustersouthcentra-fgxcx-worker-southcentralus1",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/arogbbsouthcentralus/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    },
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "aroclustersouthcentra-fgxcx-worker-southcentralus2",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/arogbbsouthcentralus/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    },
+    {
+      "count": 1,
+      "diskSizeGb": 128,
+      "name": "aroclustersouthcentra-fgxcx-worker-southcentralus3",
+      "subnetId": "/subscriptions/9a21d481-fa54-4ba9-a90e-520f8d1a5abd/resourceGroups/arogbbsouthcentralus/providers/Microsoft.Network/virtualNetworks/aro-vnet/subnets/worker-subnet",
+      "vmSize": "Standard_D4s_v3"
+    }
+  ]
+}
+

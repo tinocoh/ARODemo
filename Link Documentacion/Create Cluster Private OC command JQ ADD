@@ -295,6 +295,7 @@ zrRmrvejSKfeaNyiUPB7LKK8m1gim05zbZHhnUOn9jY     rooliva@microsoft.com Oliva (ROG
 
 oc login --token=O9L_-Lihppn-QEHVzeVdM5hIEwqSTuKL6QY_ByDQ30A --server=https://api.arogbbltam.eastus2.cloudapp.azure.com:6443
 
+https://www.web2generators.com/apache-tools/htpasswd-generator
 oc adm policy add-cluster-role-to-user cluster-admin  beta1@arogbblatam.onmicrosoft.com
 oc adm policy add-cluster-role-to-user cluster-admin  zrRmrvejSKfeaNyiUPB7LKK8m1gim05zbZHhnUOn9jY
 
