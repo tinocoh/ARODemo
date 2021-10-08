@@ -1,0 +1,3 @@
+SHOW NAME LOCATIONS
+az account list-locations
+az account list-locations |sort
