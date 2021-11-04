@@ -475,3 +475,33 @@ Status:
       Name:     Succeeded
   Packages:     kubevirt-hyperconverged,cluster-kube-descheduler-operator,container-security-operator,vertical-pod-autoscaler,web-terminal,openshiftansibleservicebroker,fuse-apicurito,clusterresourceoverride,quay-operator,openshifttemplateservicebroker,amq7-interconnect-operator,datagrid,dv-operator,ptp-operator,service-registry-operator,elasticsearch-operator,fuse-online,servicemeshoperator,ocs-operator,performance-addon-operator,quay-bridge-operator,red-hat-camel-k,amq-broker-rhel8,fuse-console,mtc-operator,jaeger-product,3scale-operator,kiali-ossm,serverless-operator,apicast-operator,manila-csi-driver-operator,codeready-workspaces,amq7-cert-manager,amq-broker,nfd,metering-ocp,eap,openshift-pipelines-operator-rh,rhsso-operator,amq-streams,businessautomation-operator,amq-online,amq-broker-lts,advanced-cluster-management,aws-ebs-csi-driver-operator,rh-service-binding-operator,cluster-logging,local-storage-operator,sriov-network-operator,cincinnati-operator
 Events:         <none>
+
+
+
+oc new-project workshopoc process openshift//mongodb-persistent -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -4
+
+oc create -n openshift -f https://raw.githubusercontent.com/openshift/origin/4ea9e6c5961eb815c200df933eee30c48a5c9166/examples/db-templates/mongodb-persistent-template.json
+
+oc process openshift//mongodb-persistent -p MONGODB_USER=ratingsuser -p MONGODB_PASSWORD=ratingspassword -p MONGODB_DATABASE=ratingsdb -p MONGODB_ADMIN_PASSWORD=ratingspassword | oc create -f -
+
+oc status
+
+oc get svc mongodb
+
+oc new-app https://github.com/microsoft/rating-api --strategy=source
+
+oc get svc rating-api
+
+oc set env deployment.apps/rating-api MONGODB_URI=mongodb://ratingsuser:ratingspassword@mongodb.workshop.svc.cluster.local:27017/ratingsdb
+
+oc get pods
+
+oc logs -p rating-api-2-x5pps rating-api
+
+oc new-app https://github.com/microsoft/rating-web --strategy=source --image-stream="openshift/nodejs:10-ubi8"
+
+oc set env deployment.apps/rating-web API=http://rating-api:8080
+
+oc expose svc/rating-web
+
+oc get route rating-web
