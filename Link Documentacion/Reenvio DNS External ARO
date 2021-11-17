@@ -20,7 +20,7 @@ Guarde el archivo y salga de su editor.
 
 
 Link RedHat
-https://docs.openshift.com/container-platform/4.3/networking/dns-operator.htm
+https://docs.openshift.com/container-platform/4.3/networking/dns-operator.html
 
 View the default DNS
 Every new OpenShift Container Platform installation has a dns.operator named default.
