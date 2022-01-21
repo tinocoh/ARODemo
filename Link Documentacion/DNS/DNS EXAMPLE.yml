@@ -1,0 +1,10 @@
+DNS AMEX
+
+ servers:
+ - forwardPlugin:
+     upstreams:
+     - 192.168.26.69
+   name: amx.com
+   zones:
+   - api.ocp4.amx.com
+
