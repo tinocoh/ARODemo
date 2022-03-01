@@ -204,3 +204,23 @@ az aro show -g JAROPRIVATE -n aroclusterlatams --query location -o tsv
 az aro show -g JAROPRIVATE -n aroclusterlatams --query apiserverProfile.url -o tsv
 az aro show -g JAROPRIVATE -n aroclusterlatams --query consoleProfile.url -o tsv
 az aro list-credentials --name aroclusterlatams --resource-group JAROPRIVATE
+
+
+
+echo "*****************************************************************"
+
+echo ""
+
+echo "Enter with your Azure Ad User and run"
+
+echo "oc get users"
+
+echo "oc adm policy add-cluster-role-to-user cluster-admin <user_name>"
+
+echo "oc adm policy add-scc-to-user anyuid -z default"
+
+echo ""
+
+echo "*****************************************************************"
+
+oc adm policy add-cluster-role-to-user cluster-admin <user_name>
