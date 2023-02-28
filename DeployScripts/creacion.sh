@@ -1,5 +1,5 @@
 #/bin/bash
-export LOCATION=southcentralus
+export LOCATION=westus3
 export RESOURCEGROUP="arogbb$LOCATION"
 export CLUSTER="arocluster$LOCATION"
 # Optener Regiones
